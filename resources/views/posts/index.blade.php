@@ -22,7 +22,9 @@
                             </tr>
                        </thead>
                        <tbody>
-                           
+                           @foreach ($posts as $post)
+                               
+                           @endforeach
                        </tbody>
                    </table>
                 </div>
