@@ -8,7 +8,7 @@
         </div>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Liste des articles</div>
 
@@ -23,7 +23,11 @@
                        </thead>
                        <tbody>
                            @foreach ($posts as $post)
-                               
+                               <tr>
+                                   <td>{{ $post->id }}</td>
+                                   <td>{{ $post->title }}</td>
+                                   <td>{{ $post->created_at }}</td>
+                               </tr>
                            @endforeach
                        </tbody>
                    </table>
