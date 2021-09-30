@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,7 +60,7 @@ class PostController extends Controller
             $post->title = $data['title'];
             $post->save();
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('status', 'Article bien ajouté');
     }
 
     /**
@@ -72,7 +82,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.edit',[
+            'post' => $post
+        ]);
     }
 
     /**
@@ -84,7 +98,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|unique:posts|max:255'
+        ]);
+
+        if(!empty($data)){
+            $post = Post::find($id);
+            $post->title = $data['title'];
+            $post->save();
+        }
+        return redirect()->route('posts.index')->with('status', 'Article bien modifié');
     }
 
     /**
@@ -94,7 +117,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('posts.index')->with('status', 'Article bien supprimé');
     }
 }

@@ -20,6 +20,7 @@
                                <td>Titre</td>
                                <td>Créé le</td>
                                <td>Modifié le</td>
+                               <td>Action</td>
                             </tr>
                        </thead>
                        <tbody>
@@ -29,6 +30,14 @@
                                    <td>{{ $post->title }}</td>
                                    <td>{{ $post->created_at->diffforHumans() }}</td>
                                    <td>{{ $post->updated_at->diffforHumans() }}</td>
+                                   <td>
+                                       <a class="btn btn-success" href="{{ route('posts.edit', $post) }}">Modifier</a>
+                                       <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-danger">Supprimer</button>
+                                        </form>
+                                    </td>
                                </tr>
                            @endforeach
                        </tbody>
