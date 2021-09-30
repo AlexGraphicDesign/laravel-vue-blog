@@ -11,14 +11,15 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Liste des articles</div>
-
                 <div class="card-body">
+                    <a class="btn btn-primary" href="{{ route('posts.create') }}">Ajouter un article</a>
                    <table class="table table-bordered">
                        <thead>
                            <tr>
                                <td>ID</td>
                                <td>Titre</td>
                                <td>Créé le</td>
+                               <td>Modifié le</td>
                             </tr>
                        </thead>
                        <tbody>
@@ -26,7 +27,8 @@
                                <tr>
                                    <td>{{ $post->id }}</td>
                                    <td>{{ $post->title }}</td>
-                                   <td>{{ $post->created_at }}</td>
+                                   <td>{{ $post->created_at->diffforHumans() }}</td>
+                                   <td>{{ $post->updated_at->diffforHumans() }}</td>
                                </tr>
                            @endforeach
                        </tbody>
