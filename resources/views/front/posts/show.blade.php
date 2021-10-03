@@ -22,6 +22,7 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            <a href="{{ route('front.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Accueil</a>
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -39,11 +40,10 @@
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1">
-                        @foreach ($posts as $post)
-                            <div class="p-6">
-                                {{ $post->title }}
-                            </div>
-                        @endforeach
+                        <div class="p-6">
+                            <h1>{{ $post->title }}</h1>
+                            <p>{{ $post->content }}</p>
+                        </div>
                     </div>
                 </div>
             </div>

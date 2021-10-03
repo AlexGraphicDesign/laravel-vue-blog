@@ -11,7 +11,14 @@ class FrontController extends Controller
     {
         $posts = Post::all();
         
-        return view('welcome', compact('posts'));
+        return view('front.index', compact('posts'));
+    }
+
+    public function article($slug)
+    {
+        $post = Post::where('slug', '=', $slug)->first();
+
+        return view('front.posts.show', compact('post'));
     }
 
 }

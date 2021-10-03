@@ -20,6 +20,9 @@ Auth::routes();
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
+// Routes pour les articles
+Route::get('/article/{slug}', [FrontController::class, 'article'])->name('front.posts.show');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function(){
