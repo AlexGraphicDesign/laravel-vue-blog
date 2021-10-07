@@ -15,4 +15,20 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    /**
+     * Get the comment.
+     */
+    public function comment()
+    {
+        return $this->belongsTo(Comment::class);
+    }
+
+     /**
+     * Get the comment to respond.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

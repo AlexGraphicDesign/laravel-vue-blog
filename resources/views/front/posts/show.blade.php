@@ -18,11 +18,11 @@
     </div>
 
     <!--Divider-->
-    <hr class="border-b-2 border-gray-400 mb-8 mx-4">
+    {{-- <hr class="border-b-2 border-gray-400 mb-8 mx-4"> --}}
 
 
     <!--Subscribe-->
-    <div class="container px-4">
+    {{-- <div class="container px-4">
         <div class="font-sans bg-gradient-to-b from-green-100 to-gray-100 rounded-lg shadow-xl p-4 text-center">
             <h2 class="font-bold break-normal text-xl md:text-3xl">Subscribe to my Newsletter</h2>
             <h3 class="font-bold break-normal text-gray-600 text-sm md:text-base">Get the latest posts delivered right to your inbox</h3>
@@ -35,7 +35,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- /Subscribe-->
 
     <!--Divider-->
