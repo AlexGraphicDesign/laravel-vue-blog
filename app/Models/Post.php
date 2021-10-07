@@ -2,12 +2,28 @@
 
 namespace App\Models;
 
-use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
+
+    /**
+     * Get the user for the post.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * The post that belong to the tags.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     /**
      * Get the comments for the blog post.
      */

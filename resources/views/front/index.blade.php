@@ -9,7 +9,7 @@
                 <a href="{{ route('front.posts.show', $post->slug) }}" class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
                     {{ $post->title }}
                 </a>
-                <p class="text-sm md:text-base font-normal text-gray-600">{{ $post->created_at->diffforHumans() }}</p>
+                <p class="text-sm md:text-base font-normal text-gray-600">{{ $post->created_at->diffforHumans() }} - {{ $post->user->name }}</p>
             </div>
         @endforeach
     </div>
