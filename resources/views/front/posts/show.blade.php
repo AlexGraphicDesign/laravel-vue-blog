@@ -52,10 +52,14 @@
             <p><a href="#" class="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline">Blog title</a></p>
         </div>
     </div>
-
-
     <!--/Next & Prev Links-->
 
+    @foreach ($post->comments as $comment)
+        <span>
+            <p>{{ $comment->content }}</p>
+            <small>{{ $comment->user->name }}</small>
+        </span>
+    @endforeach
 
 
 <footer class="bg-white border-t border-gray-400 shadow">

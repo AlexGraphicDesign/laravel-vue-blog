@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCommentIdToCommentsTable extends Migration
+class AddPostIdToCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddCommentIdToCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreignId('comment_id')->nullable()->constrained();
+            $table->foreignId('post_id')->nullable()->constrained();
         });
     }
 
@@ -26,7 +26,7 @@ class AddCommentIdToCommentsTable extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign('comment_id');
+            $table->dropForeign('post_id');
         });
     }
 }
