@@ -54,13 +54,20 @@
     </div>
     <!--/Next & Prev Links-->
 
+    <!--Comment-->
     @foreach ($post->comments as $comment)
-        <span>
+        <div>
             <p>{{ $comment->content }}</p>
             <small>{{ $comment->user->name }}</small>
-        </span>
+        </div>
+        @foreach ($comment->comments as $subComment)
+            <div class="pl-4">
+                <p>{{ $subComment->content }}</p>
+                <small>{{ $subComment->user->name }}</small>
+            </div>
+        @endforeach
     @endforeach
-
+    <!--/Comment-->
 
 <footer class="bg-white border-t border-gray-400 shadow">
     <div class="container max-w-4xl mx-auto flex py-8">
