@@ -1,13 +1,13 @@
 <template>
     <div>
-        textA
+        Liste des commentaires
     </div>
 </template>
 
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            console.log('Liste des commentaires OK.')
         }
     }
 </script>

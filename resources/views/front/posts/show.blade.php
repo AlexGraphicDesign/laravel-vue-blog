@@ -55,6 +55,7 @@
     <!--/Next & Prev Links-->
 
     <!--Comment-->
+    <comments-component></comments-component>
     @foreach ($post->comments as $comment)
         <div>
             <p>{{ $comment->content }}</p>

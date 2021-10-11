@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body id="app" class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
 	<nav id="header" class="fixed w-full z-10 top-0">
 
 		<div id="progress" class="h-1 z-20 top-0" style="background:linear-gradient(to right, #4dc0b5 var(--scroll), transparent 0);"></div>
@@ -84,7 +84,7 @@
 	</nav>
     <main>
 		<!--Container-->
-		<div class="container w-full md:max-w-3xl mx-auto pt-20">
+		<div id="app" class="container w-full md:max-w-3xl mx-auto pt-20">
 			<div class="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
 				@yield('content')
 				<script>
