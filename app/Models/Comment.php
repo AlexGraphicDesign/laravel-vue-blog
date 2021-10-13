@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
+    public $appends = ["author"];
+
+    public function getAuthorAttribute()
+    {
+        return $this->user->name;
+    }
+
     /**
      * Get the post for the comments.
      */

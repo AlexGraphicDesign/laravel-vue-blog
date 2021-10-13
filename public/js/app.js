@@ -2071,11 +2071,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      comments: []
+    };
+  },
   props: ['post_id'],
   mounted: function mounted() {
+    this.getPost();
     console.log(this.post_id);
     console.log('Liste des commentaires OK.');
+  },
+  methods: {
+    getPost: function getPost() {
+      var _this = this;
+
+      axios.get('http://laravel-vue-blog.test/api/articles/' + this.post_id).then(function (response) {
+        return _this.comments = response.data;
+      });
+    }
   }
 });
 
@@ -37731,7 +37754,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Liste des commentaires\n")])
+  return _c(
+    "div",
+    [
+      _vm._v("\n    Liste des commentaires\n    "),
+      _vm._l(_vm.comments, function(comment) {
+        return _c("div", [
+          _c("p", [
+            _vm._v("\n            " + _vm._s(comment.content) + "\n        ")
+          ]),
+          _vm._v(" "),
+          _c("small", [
+            _vm._v("\n            " + _vm._s(comment.author) + "\n        ")
+          ])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
