@@ -56,7 +56,7 @@
 
     <!--Comment-->
     <comments-component post_id={{ $post->id }}></comments-component>
-    @foreach ($post->comments as $comment)
+    {{-- @foreach ($post->comments as $comment)
         <div>
             <p>{{ $comment->content }}</p>
             <small>{{ $comment->user->name }}</small>
@@ -67,7 +67,7 @@
                 <small>{{ $subComment->user->name }}</small>
             </div>
         @endforeach
-    @endforeach
+    @endforeach --}}
     <!--/Comment-->
 
 <footer class="bg-white border-t border-gray-400 shadow">

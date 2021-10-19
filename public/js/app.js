@@ -2079,6 +2079,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2088,8 +2095,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ['post_id'],
   mounted: function mounted() {
     this.getPost();
-    console.log(this.post_id);
-    console.log('Liste des commentaires OK.');
   },
   methods: {
     getPost: function getPost() {
@@ -37758,6 +37763,8 @@ var render = function() {
     "div",
     [
       _vm._v("\n    Liste des commentaires\n    "),
+      _c("hr"),
+      _vm._v(" "),
       _vm._l(_vm.comments, function(comment) {
         return _c("div", [
           _c("p", [
@@ -37768,12 +37775,31 @@ var render = function() {
             _vm._v("\n            " + _vm._s(comment.author) + "\n        ")
           ])
         ])
-      })
+      }),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._m(0)
     ],
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("strong", [_vm._v("Nom prénom")]),
+      _vm._v(" "),
+      _c("textarea", { attrs: { name: "", id: "", cols: "30", rows: "10" } }),
+      _vm._v(" "),
+      _c("button", { attrs: { type: "submit" } }, [
+        _vm._v("Envoyer mon commentaire")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

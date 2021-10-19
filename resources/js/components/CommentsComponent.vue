@@ -1,6 +1,7 @@
 <template>
     <div>
         Liste des commentaires
+        <hr>
         <div v-for="comment in comments">
             <p>
                 {{ comment.content }}
@@ -8,6 +9,12 @@
             <small>
                 {{ comment.author }}
             </small>
+        </div>
+        <hr>
+        <div>
+            <strong>Nom prénom</strong>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <button type="submit">Envoyer mon commentaire</button>
         </div>
     </div>
 </template>
@@ -22,8 +29,6 @@
         props: ['post_id'],
         mounted() {
             this.getPost();
-            console.log(this.post_id);
-            console.log('Liste des commentaires OK.');
         },
         methods:{
             getPost(){
