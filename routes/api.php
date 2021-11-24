@@ -16,6 +16,10 @@ use App\Http\Controllers\Api\PostController;
 |
 */
 
+Route::middleware('auth:api')->get('/user', function(Request $request){
+    return $request->user();
+});
+
 Route::middleware('api')->get('/articles/{post}', [PostController::class, 'getComments']);
 
 //http://laravel-vue-blog.test/api/articles/' + this.post_id

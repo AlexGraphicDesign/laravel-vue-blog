@@ -28,6 +28,11 @@
         },
         props: ['post_id'],
         mounted() {
+            axios.get('/api/user')
+            .then(response => {
+                console.log(response.data);
+            });
+
             this.getPost();
         },
         methods:{
