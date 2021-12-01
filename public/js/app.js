@@ -2086,22 +2086,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      content: null,
+      user: [],
       comments: []
     };
   },
   props: ['post_id'],
   mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/user').then(function (response) {
+      _this.user = response.data;
+    });
     this.getPost();
   },
   methods: {
     getPost: function getPost() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('http://laravel-vue-blog.test/api/articles/' + this.post_id).then(function (response) {
-        return _this.comments = response.data;
+        return _this2.comments = response.data;
       });
     }
   }
@@ -37766,40 +37784,82 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _vm._l(_vm.comments, function(comment) {
-        return _c("div", [
-          _c("p", [
-            _vm._v("\n            " + _vm._s(comment.content) + "\n        ")
-          ]),
-          _vm._v(" "),
-          _c("small", [
-            _vm._v("\n            " + _vm._s(comment.author) + "\n        ")
-          ])
-        ])
+        return _c(
+          "div",
+          [
+            _c("p", [
+              _vm._v("\n            " + _vm._s(comment.content) + "\n        ")
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v("\n            " + _vm._s(comment.author) + "\n        ")
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Réponse à ce commentaire")]),
+            _vm._v(" "),
+            _vm._l(comment.comments, function(subComment) {
+              return _c("div", [
+                _c("small", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(subComment.content) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(subComment.author) +
+                      "\n            "
+                  )
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c("hr")
+          ],
+          2
+        )
       }),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", [
+        _c("strong", [_vm._v(_vm._s(_vm.user.name))]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.content,
+              expression: "content"
+            }
+          ],
+          attrs: { placeholder: "Votre commentaire" },
+          domProps: { value: _vm.content },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.content = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("button", { attrs: { type: "submit" } }, [
+          _vm._v("Envoyer mon commentaire")
+        ])
+      ])
     ],
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("strong", [_vm._v("Nom prénom")]),
-      _vm._v(" "),
-      _c("textarea", { attrs: { name: "", id: "", cols: "30", rows: "10" } }),
-      _vm._v(" "),
-      _c("button", { attrs: { type: "submit" } }, [
-        _vm._v("Envoyer mon commentaire")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

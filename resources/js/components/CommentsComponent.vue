@@ -6,14 +6,25 @@
             <p>
                 {{ comment.content }}
             </p>
-            <small>
+            <p>
                 {{ comment.author }}
-            </small>
+            </p>
+            <hr>
+            <h3>Réponse à ce commentaire</h3>
+            <div v-for="subComment in comment.comments">
+                <small>
+                    {{ subComment.content }}
+                </small>
+                <p>
+                    {{ subComment.author }}
+                </p>
+            </div>
+            <hr>
         </div>
         <hr>
         <div>
-            <strong>Nom prénom</strong>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <strong>{{ user.name }}</strong>
+            <textarea v-model="content" placeholder="Votre commentaire"></textarea>
             <button type="submit">Envoyer mon commentaire</button>
         </div>
     </div>
@@ -23,6 +34,8 @@
     export default {
         data: function () {
             return {
+                content: null,
+                user: [],
                 comments: []
             }
         },
@@ -30,7 +43,7 @@
         mounted() {
             axios.get('/api/user')
             .then(response => {
-                console.log(response.data);
+                this.user = response.data;
             });
 
             this.getPost();

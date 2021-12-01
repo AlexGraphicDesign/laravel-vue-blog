@@ -10,6 +10,6 @@ class PostController extends Controller
 {
     public function getComments(Post $post)
     {
-        return $post->comments;
+        return $post->comments()->with('comments')->get();
     }
 }
