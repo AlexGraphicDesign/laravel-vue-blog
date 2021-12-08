@@ -25,7 +25,7 @@
         <div>
             <strong>{{ user.name }}</strong>
             <textarea v-model="content" placeholder="Votre commentaire"></textarea>
-            <button type="submit">Envoyer mon commentaire</button>
+            <button  v-on:click="sendComment">Envoyer mon commentaire</button>
         </div>
     </div>
 </template>
@@ -49,6 +49,16 @@
             this.getPost();
         },
         methods:{
+            sendComment() {
+                console.log('mon commentaire');
+                console.log(this.content);
+                axios.post('http://laravel-vue-blog.test/api/comment/create',{
+                    content: this.content
+                })
+                .then(response => (
+                    console.log(response.data)
+                ))
+            },
             getPost(){
                 axios
                     .get('http://laravel-vue-blog.test/api/articles/' + this.post_id)

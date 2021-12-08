@@ -2115,6 +2115,10 @@ __webpack_require__.r(__webpack_exports__);
     this.getPost();
   },
   methods: {
+    sendComment: function sendComment() {
+      console.log('mon commentaire');
+      console.log(this.content);
+    },
     getPost: function getPost() {
       var _this2 = this;
 
@@ -37851,7 +37855,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("button", { attrs: { type: "submit" } }, [
+        _c("button", { on: { click: _vm.sendComment } }, [
           _vm._v("Envoyer mon commentaire")
         ])
       ])

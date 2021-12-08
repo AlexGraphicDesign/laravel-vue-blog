@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\{PostController, UserController};
+use App\Http\Controllers\Api\{PostController, UserController, CommentController};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,8 @@ use App\Http\Controllers\Api\{PostController, UserController};
 */
 
 Route::middleware('auth:api')->get('/user', [UserController::class, 'user']);
+Route::middleware('auth:api')->get('/comments/create', [CommentController::class, 'create']);
+
 
 Route::middleware('api')->get('/articles/{post}', [PostController::class, 'getComments']);
 
