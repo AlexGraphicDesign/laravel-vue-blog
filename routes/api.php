@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\{PostController, UserController, CommentController}
 */
 
 Route::middleware('auth:api')->get('/user', [UserController::class, 'user']);
-Route::middleware('auth:api')->get('/comments/create', [CommentController::class, 'create']);
+Route::middleware('auth:api')->post('/comments/create', [CommentController::class, 'create']);
 
 
 Route::middleware('api')->get('/articles/{post}', [PostController::class, 'getComments']);

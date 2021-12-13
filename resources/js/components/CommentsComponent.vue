@@ -22,7 +22,7 @@
             <hr>
         </div>
         <hr>
-        <div>
+        <div v-if="user">
             <strong>{{ user.name }}</strong>
             <textarea v-model="content" placeholder="Votre commentaire"></textarea>
             <button  v-on:click="sendComment">Envoyer mon commentaire</button>
@@ -50,14 +50,19 @@
         },
         methods:{
             sendComment() {
-                console.log('mon commentaire');
-                console.log(this.content);
-                axios.post('http://laravel-vue-blog.test/api/comment/create',{
-                    content: this.content
-                })
-                .then(response => (
-                    console.log(response.data)
-                ))
+                if(this.message != ''){
+                    let obj = this;
+                    console.log(this.content);
+                    console.log(this.user.id);
+                    axios.post('http://laravel-vue-blog.test/api/comments/create',{
+                        content: this.content,
+                        post_id: this.post_id
+
+                    })
+                    .then(response => (
+                        obj.getPost()
+                    ))
+                }
             },
             getPost(){
                 axios

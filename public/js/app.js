@@ -2116,8 +2116,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendComment: function sendComment() {
-      console.log('mon commentaire');
-      console.log(this.content);
+      if (this.message != '') {
+        var obj = this;
+        console.log(this.content);
+        console.log(this.user.id);
+        axios.post('http://laravel-vue-blog.test/api/comments/create', {
+          content: this.content,
+          post_id: this.post_id
+        }).then(function (response) {
+          return obj.getPost();
+        });
+      }
     },
     getPost: function getPost() {
       var _this2 = this;
@@ -37831,34 +37840,36 @@ var render = function() {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _c("div", [
-        _c("strong", [_vm._v(_vm._s(_vm.user.name))]),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.content,
-              expression: "content"
-            }
-          ],
-          attrs: { placeholder: "Votre commentaire" },
-          domProps: { value: _vm.content },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+      _vm.user
+        ? _c("div", [
+            _c("strong", [_vm._v(_vm._s(_vm.user.name))]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.content,
+                  expression: "content"
+                }
+              ],
+              attrs: { placeholder: "Votre commentaire" },
+              domProps: { value: _vm.content },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.content = $event.target.value
+                }
               }
-              _vm.content = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.sendComment } }, [
-          _vm._v("Envoyer mon commentaire")
-        ])
-      ])
+            }),
+            _vm._v(" "),
+            _c("button", { on: { click: _vm.sendComment } }, [
+              _vm._v("Envoyer mon commentaire")
+            ])
+          ])
+        : _vm._e()
     ],
     2
   )
