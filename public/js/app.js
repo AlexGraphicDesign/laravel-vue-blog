@@ -2097,9 +2097,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      loading: true,
       content: null,
       user: [],
       comments: []
@@ -2117,6 +2122,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     sendComment: function sendComment() {
       if (this.message != '') {
+        this.loading = true;
         var obj = this;
         console.log(this.content);
         console.log(this.user.id);
@@ -2124,15 +2130,16 @@ __webpack_require__.r(__webpack_exports__);
           content: this.content,
           post_id: this.post_id
         }).then(function (response) {
-          return obj.getPost();
+          obj.getPost();
         });
       }
     },
     getPost: function getPost() {
-      var _this2 = this;
-
+      var obj = this;
       axios.get('http://laravel-vue-blog.test/api/articles/' + this.post_id).then(function (response) {
-        return _this2.comments = response.data;
+        console.log('Chargement');
+        obj.comments = response.data;
+        obj.loading = false;
       });
     }
   }
@@ -37797,46 +37804,60 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _vm._l(_vm.comments, function(comment) {
-        return _c(
-          "div",
-          [
-            _c("p", [
-              _vm._v("\n            " + _vm._s(comment.content) + "\n        ")
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v("\n            " + _vm._s(comment.author) + "\n        ")
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("h3", [_vm._v("Réponse à ce commentaire")]),
-            _vm._v(" "),
-            _vm._l(comment.comments, function(subComment) {
-              return _c("div", [
-                _c("small", [
+        return !_vm.loading
+          ? _c(
+              "div",
+              [
+                _c("p", [
                   _vm._v(
-                    "\n                " +
-                      _vm._s(subComment.content) +
-                      "\n            "
+                    "\n            " + _vm._s(comment.content) + "\n        "
                   )
                 ]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n                " +
-                      _vm._s(subComment.author) +
-                      "\n            "
+                    "\n            " + _vm._s(comment.author) + "\n        "
                   )
-                ])
-              ])
-            }),
-            _vm._v(" "),
-            _c("hr")
-          ],
-          2
-        )
+                ]),
+                _vm._v(" "),
+                _c("p", { on: { click: _vm.responseComment } }, [
+                  _vm._v("Répondre à ce commentaire")
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("h3", [_vm._v("Réponse à ce commentaire")]),
+                _vm._v(" "),
+                _vm._l(comment.comments, function(subComment) {
+                  return _c("div", [
+                    _c("small", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(subComment.content) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(subComment.author) +
+                          "\n            "
+                      )
+                    ])
+                  ])
+                }),
+                _vm._v(" "),
+                _c("hr")
+              ],
+              2
+            )
+          : _vm._e()
       }),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("div", [_vm._v("\n        Chargement ...\n    ")])
+        : _vm._e(),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),

@@ -20,14 +20,14 @@ class CommentController extends Controller
         $post_id = $request->input('post_id');
 
         //Empêche l'ajout de commentaires en masse
-        $lastComment = Comment::where('post_id', '=', $post_id)->latest()->first();
+        // $lastComment = Comment::where('post_id', '=', $post_id)->latest()->first();
 
-        if($lastComment->user_id == $request->user()->id){
-            return false;
-        }
+        // if($lastComment->user_id == $request->user()->id){
+        //     return false;
+        // }
 
         //Si content n'est pas vide, on ajoute le commentaire
-        if(!empty($content)){
+        if(!empty($content) && !empty($post_id)){
             $comment = new Comment;
             $comment->content = $content;
             $comment->post_id = $post_id;
