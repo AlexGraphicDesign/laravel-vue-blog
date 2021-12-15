@@ -9,7 +9,7 @@
             <p>
                 {{ comment.author }}
             </p>
-            <p v-on:click="responseComment">Répondre à ce commentaire</p>
+            <p v-on:click="responseComment(comment.id)">Répondre à ce commentaire</p>
             <hr>
             <h3>Réponse à ce commentaire</h3>
             <div v-for="subComment in comment.comments">
@@ -40,6 +40,7 @@
             return {
                 loading : true,
                 content: null,
+                comment_id: null,
                 user: [],
                 comments: []
             }
@@ -54,6 +55,9 @@
             this.getPost();
         },
         methods:{
+            responseComment(commentId) {
+                this.comment_id = commentId;
+            },
             sendComment() {
                 if(this.message != ''){
                     this.loading = true;
