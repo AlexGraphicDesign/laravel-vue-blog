@@ -17,6 +17,7 @@ class CommentController extends Controller
         // OK ou NON OK
 
         $content = $request->input('content');
+        $comment_id = $request->input('comment_id');
         $post_id = $request->input('post_id');
 
         //Empêche l'ajout de commentaires en masse
@@ -31,6 +32,12 @@ class CommentController extends Controller
             $comment = new Comment;
             $comment->content = $content;
             $comment->post_id = $post_id;
+
+            if($comment_id)
+            {
+                $comment->comment_id = $comment_id;
+            }
+
             $comment->user_id = $request->user()->id;
             $comment->save();
 

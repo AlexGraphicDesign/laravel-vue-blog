@@ -28,7 +28,11 @@
          <hr>
         <div v-if="user">
             <strong>{{ user.name }}</strong>
+            <br />
+            <span v-if="comment_id" v-on:click="cancelResponse()"><small>Annuler répondre</small></span>
+            <br />
             <textarea v-model="content" placeholder="Votre commentaire"></textarea>
+            <br />
             <button v-on:click="sendComment">Envoyer mon commentaire</button>
         </div>
     </div>
@@ -55,6 +59,9 @@
             this.getPost();
         },
         methods:{
+            cancelResponse() {
+                this.comment_id = null;
+            },
             responseComment(commentId) {
                 this.comment_id = commentId;
             },
@@ -66,7 +73,8 @@
                     console.log(this.user.id);
                     axios.post('http://laravel-vue-blog.test/api/comments/create',{
                         content: this.content,
-                        post_id: this.post_id
+                        post_id: this.post_id,
+                        comment_id: this.comment_id
 
                     })
                     .then(function (response){
